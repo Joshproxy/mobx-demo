@@ -8,6 +8,11 @@ import observableCartStore from '../Cart/ObservableCartStore';
 class TitleList extends React.Component<{store: IObservableTitleStore }> {
     title: string = 'Title';
     description: string = 'Description';
+
+    constructor(props: {store: IObservableTitleStore }) {
+        super(props, null);
+        props.store.loadTitles();
+    }
     
     render(): JSX.Element {
         let x: any[] = [];
