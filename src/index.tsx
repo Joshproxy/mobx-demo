@@ -1,18 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router } from "react-router-dom";
 import "./index.css";
-import App from "./components/app/App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "mobx-react";
 import { stores } from "./stores/Stores";
-import { createBrowserHistory } from "history";
+import { Routes } from "./Routes";
 
 ReactDOM.render(
   <Provider {...stores}>
-    <Router history={createBrowserHistory()}>
-      <App />
-    </Router>
+    <Routes />
   </Provider>,
   document.getElementById("root")
 );
