@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
 import IObservableCartStore from "../../stores/IObservableCartStore";
-import { cartStore } from "../../stores/StoreNames";
+import { cartStore } from "../../stores/Stores";
 
 interface ICartProps {
   cartStore?: IObservableCartStore;

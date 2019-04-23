@@ -3,6 +3,7 @@ import ITitle from '../models/ITitle';
 import IObservableCartStore from './IObservableCartStore';
 
 class ObservableCartStore implements IObservableCartStore  {
+    name = 'cartStore';
     @observable cartTotal: number = 0;
     @observable items: ITitle[] = [];
     

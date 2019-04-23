@@ -1,24 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Router } from "react-router-dom";
 import "./index.css";
 import App from "./components/app/App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "mobx-react";
-
-import observableTitleStore from "./stores/ObservableTitleStore";
-import observableCartStore from "./stores/ObservableCartStore";
-import * as storeNames from "./stores/StoreNames";
-
-const stores = {
-  [storeNames.cartStore]: observableCartStore,
-  [storeNames.titleStore]: observableTitleStore
-};
-
-(window as any)._____APP_STATE_____ = stores;
+import { stores } from "./stores/Stores";
+import { createBrowserHistory } from "history";
 
 ReactDOM.render(
   <Provider {...stores}>
-    <App />
+    <Router history={createBrowserHistory()}>
+      <App />
+    </Router>
   </Provider>,
   document.getElementById("root")
 );

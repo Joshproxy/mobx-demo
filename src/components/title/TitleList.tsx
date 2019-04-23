@@ -3,7 +3,7 @@ import { Title } from "./Title";
 import { observer, inject } from "mobx-react";
 import IObservableTitleStore from "../../stores/IObservableTitleStore";
 import ITitle from "../../models/ITitle";
-import { titleStore, cartStore } from "../../stores/StoreNames";
+import { titleStore, cartStore } from "../../stores/Stores";
 import IObservableCartStore from "../../stores/IObservableCartStore";
 
 interface ITitleListProps {
