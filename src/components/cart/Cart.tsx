@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react'
-import IObservableCartStore from './IObservableCartStore';
+import IObservableCartStore from '../../stores/IObservableCartStore';
 
 @observer
 class Cart extends Component<{store: IObservableCartStore }> {

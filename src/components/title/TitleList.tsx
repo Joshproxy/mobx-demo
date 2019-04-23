@@ -1,8 +1,9 @@
 import React from 'react';
-import { Title } from "../Title/Title";
+import { Title } from "./Title";
 import { observer } from 'mobx-react';
-import IObservableTitleStore from '../Title/IObservableTitleStore';
-import observableCartStore from '../Cart/ObservableCartStore';
+import IObservableTitleStore from '../../stores/IObservableTitleStore';
+import observableCartStore from '../../stores/ObservableCartStore';
+import ITitle from '../../models/ITitle';
 
 @observer
 class TitleList extends React.Component<{store: IObservableTitleStore }> {
@@ -17,16 +18,9 @@ class TitleList extends React.Component<{store: IObservableTitleStore }> {
     render(): JSX.Element {
         let x: any[] = [];
         let store = observableCartStore;
-        let defaultTitle = {
-            description: 'Cool Description',
-            format: 'Online',
-            id: 1,
-            name: 'Red Book',
-            price: 20
-        };
-
-        function addTitle() {
-            store.addTitle(defaultTitle);
+        
+        const addTitle = (title: ITitle) => () => {
+            store.addTitle(title);
         }
 
         this.props.store.titles.map((t) => {
@@ -36,7 +30,7 @@ class TitleList extends React.Component<{store: IObservableTitleStore }> {
                 title={t.name}
                 format={t.format}
                 price={t.price}
-                addTitleToCart={addTitle}/>)
+                addTitleToCart={addTitle(t)}/>)
         })
         
         return(

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../../images/logo.svg';
 import './App.css';
-import Cart from './Cart/Cart';
-import TitleList from './TitleList/TitleList';
-import observableTitleStore from './Title/ObservableTitleStore';
-import observableCartStore from './Cart/ObservableCartStore'
+import Cart from '../cart/Cart';
+import TitleList from '../title/TitleList';
+import observableTitleStore from '../../stores/ObservableTitleStore';
+import observableCartStore from '../../stores/ObservableCartStore'
 
 class App extends Component {
   

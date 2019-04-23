@@ -1,5 +1,5 @@
 import { observable, computed } from 'mobx'
-import ITitle from '../Title/ITitle';
+import ITitle from '../models/ITitle';
 import IObservableCartStore from './IObservableCartStore';
 
 class ObservableCartStore implements IObservableCartStore  {

@@ -1,5 +1,5 @@
 import { observable, computed } from 'mobx'
-import ITitle from './ITitle';
+import ITitle from '../models/ITitle';
 import IObservableTitleStore from './IObservableTitleStore';
 
 class ObservableTitleStore implements IObservableTitleStore {
@@ -15,11 +15,11 @@ class ObservableTitleStore implements IObservableTitleStore {
         price: 20
     },
     {
-        description: 'Cool Description',
-        format: 'Online',
+        description: 'Another Cool Description',
+        format: 'Offline',
         id: 2,
-        name: 'Red Book',
-        price: 20
+        name: 'Blue Book',
+        price: 30
     }]
 
     public loadTitles = (): Promise<void> => {
