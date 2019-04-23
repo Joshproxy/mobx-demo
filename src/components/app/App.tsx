@@ -6,6 +6,7 @@ import TitleList from "../title/TitleList";
 import observableTitleStore from "../../stores/ObservableTitleStore";
 import observableCartStore from "../../stores/ObservableCartStore";
 import { Route } from "react-router";
+import { Link } from "react-router-dom";
 
 class App extends Component {
   render() {
@@ -18,13 +19,22 @@ class App extends Component {
             exact={true}
             render={props => (
               <div>
+                <Link to="/test">Test Routing</Link>
                 <Cart />
                 <TitleList />
               </div>
             )}
           />
 
-          <Route path="/test" render={() => <span>test route</span>} />
+          <Route
+            path="/test"
+            render={() => (
+              <div>
+                <div>test route</div>
+                <Link to="/">Go Back</Link>
+              </div>
+            )}
+          />
         </header>
       </div>
     );
