@@ -12,9 +12,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-        <Cart store={observableCartStore} />
+        <Cart />
           <img src={logo} className="App-logo" alt="logo" />
-          <TitleList store={observableTitleStore} />
+          <TitleList />
         </header>
       </div>
     );

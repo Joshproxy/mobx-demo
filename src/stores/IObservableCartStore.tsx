@@ -6,6 +6,7 @@ interface IObservableCartStore {
     getCartTotal:  number;
     getTotalPrice:  number;
     clearCart: any;
+    addTitle: (title: ITitle) => void;
 }
 
 export default IObservableCartStore;
