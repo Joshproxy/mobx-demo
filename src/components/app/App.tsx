@@ -17,6 +17,7 @@ class App extends Component<IAppProps> {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <Link to="/test">Test Routing</Link>
+          <div>{process.env.REACT_APP_ENV}</div>
           <Cart />
           <TitleList />
         </header>

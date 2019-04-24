@@ -9,7 +9,9 @@
     "@types/react-dom": "16.8.4",
     "@types/axios": "^0.14.0",
     "@types/react-router-dom": "^4.3.2",
-    "@types/history": "^4.7.2"
+    "@types/history": "^4.7.2",
+    "custom-env": "^1.0.0",
+    "@types/amplitude-js": "^4.4.1"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -20,12 +22,14 @@
     "react-scripts": "2.1.8",
     "react-router-dom": "^5.0.0",
     "history": "^4.9.0",
-    "typescript": "3.4.3"
+    "typescript": "3.4.3",
+    "amplitude-js": "^5.2.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env NODE_ENV=dev react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "prod": "cross-env NODE_ENV=prod react-scripts start",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
