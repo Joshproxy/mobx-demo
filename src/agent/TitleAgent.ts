@@ -3,7 +3,7 @@ import configurationStore from "../stores/ConfigurationStore";
 import BaseAgent from "./BaseAgent";
 import ITitle from "../models/ITitle";
 
-class TitleAgent extends BaseAgent<ITitle>
+class TitleAgent extends BaseAgent
   implements ITitleAgent {
   private titleCache: ITitle[] = [];
 
@@ -38,11 +38,11 @@ class TitleAgent extends BaseAgent<ITitle>
   };
 
   getTitle = (id: number): Promise<ITitle> => {
-    return this.get(id);
+    return this.get<ITitle>(id);
   };
 
   postTitle = (obj: ITitle): Promise<ITitle> => {
-    return this.post(obj);
+    return this.post<ITitle>(obj);
   };
 }
 
