@@ -11,7 +11,11 @@
     "@types/react-router-dom": "^4.3.2",
     "@types/history": "^4.7.2",
     "custom-env": "^1.0.0",
-    "@types/amplitude-js": "^4.4.1"
+    "@types/amplitude-js": "^4.4.1",
+    "prettier": "^1.17.0",
+    "husky": "^2.1.0",
+    "lint-staged": "^8.1.5",
+    "pretty-quick": "^1.10.0"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -30,7 +34,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "prod": "cross-env NODE_ENV=prod react-scripts start",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "pretty": "prettier --write --tab-width 4 \"src/**/*.ts\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,5 +45,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
 }

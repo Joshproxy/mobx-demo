@@ -1,7 +1,7 @@
 import ITitle from "../models/ITitle";
 
 export default interface ITitleAgent {
-    getTitles: (search: any) => Promise<ITitle[]>;
-    getTitle: (id: number) => Promise<ITitle>;
-    postTitle: (obj: ITitle) => Promise<ITitle>;
+  getTitles: (search: any) => Promise<ITitle[]>;
+  getTitle: (id: number) => Promise<ITitle>;
+  postTitle: (obj: ITitle) => Promise<ITitle>;
 }

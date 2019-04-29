@@ -3,8 +3,7 @@ import configurationStore from "../stores/ConfigurationStore";
 import BaseAgent from "./BaseAgent";
 import ITitle from "../models/ITitle";
 
-class TitleAgent extends BaseAgent
-  implements ITitleAgent {
+class TitleAgent extends BaseAgent implements ITitleAgent {
   private titleCache: ITitle[] = [];
 
   constructor() {

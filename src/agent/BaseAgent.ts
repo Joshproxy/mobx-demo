@@ -6,7 +6,10 @@ export default abstract class BaseAgent {
   protected delete = (id: any, config?: AxiosRequestConfig) =>
     Axios.delete(`${this.baseUrl}/${id}`, config);
 
-  protected getMany = <T>(query: any, config?: AxiosRequestConfig) : Promise<T[]> =>
+  protected getMany = <T>(
+    query: any,
+    config?: AxiosRequestConfig
+  ): Promise<T[]> =>
     Axios.get<T[]>(`${this.baseUrl}/${query}`, config).then(
       (response: AxiosResponse<T[]>) => response.data
     );

@@ -1,7 +1,7 @@
-import IAuth from './IAuth';
+import IAuth from "./IAuth";
 
 export default class Auth implements IAuth {
-    isAuthenticated = () => true;
-    getAccessToken = () => 'fakeToken';
-    getUserId = () => 'FakeUserId'
+  isAuthenticated = () => true;
+  getAccessToken = () => "fakeToken";
+  getUserId = () => "FakeUserId";
 }
