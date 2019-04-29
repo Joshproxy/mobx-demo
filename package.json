@@ -12,10 +12,14 @@
     "@types/history": "^4.7.2",
     "custom-env": "^1.0.0",
     "@types/amplitude-js": "^4.4.1",
-    "prettier": "^1.17.0",
+    "tslint": "^5.16.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-config-prettier": "^1.18.0",
+    "prettier": "1.17.0",
     "husky": "^2.1.0",
     "lint-staged": "^8.1.5",
-    "pretty-quick": "^1.10.0"
+    "pretty-quick": "^1.10.0",
+    "tslint-react": "^4.0.0"
   },
   "dependencies": {
     "axios": "^0.18.0",

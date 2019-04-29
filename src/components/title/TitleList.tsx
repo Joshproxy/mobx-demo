@@ -1,22 +1,21 @@
+import { inject, observer } from "mobx-react";
 import React from "react";
-import { Title } from "./Title";
-import { observer, inject } from "mobx-react";
-import IObservableTitleStore from "../../stores/IObservableTitleStore";
 import ITitle from "../../models/ITitle";
-import { titleStore, cartStore } from "../../stores/Stores";
 import IObservableCartStore from "../../stores/IObservableCartStore";
+import IObservableTitleStore from "../../stores/IObservableTitleStore";
+import { cartStore, titleStore } from "../../stores/Stores";
+import { Title } from "./Title";
 
 interface ITitleListProps {
   titleStore?: IObservableTitleStore;
   cartStore?: IObservableCartStore;
 }
 
-
 @inject(titleStore, cartStore)
 @observer
 class TitleList extends React.Component<ITitleListProps> {
-  title: string = "Title";
-  description: string = "Description";
+  public title: string = "Title";
+  public description: string = "Description";
   private titleStore: IObservableTitleStore;
   private cartStore: IObservableCartStore;
   constructor(props: ITitleListProps) {
@@ -26,8 +25,8 @@ class TitleList extends React.Component<ITitleListProps> {
     this.titleStore.loadTitles();
   }
 
-  render() {
-    let x: any[] = [];
+  public render() {
+    const x: any[] = [];
 
     const addTitle = (title: ITitle) => () => {
       this.cartStore.addTitle(title);

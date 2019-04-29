@@ -1,14 +1,10 @@
-import ITitleAgent from "./ITitleAgent";
+import ITitle from "../models/ITitle";
 import configurationStore from "../stores/ConfigurationStore";
 import BaseAgent from "./BaseAgent";
-import ITitle from "../models/ITitle";
+import ITitleAgent from "./ITitleAgent";
 
 class TitleAgent extends BaseAgent implements ITitleAgent {
   private titleCache: ITitle[] = [];
-
-  constructor() {
-    super(configurationStore.edgeUrl + "/Example");
-  }
 
   private mockedTitles: ITitle[] = [
     {
@@ -27,7 +23,11 @@ class TitleAgent extends BaseAgent implements ITitleAgent {
     }
   ];
 
-  getTitles = (query: any): Promise<ITitle[]> => {
+  constructor() {
+    super(configurationStore.edgeUrl + "/Example");
+  }
+
+  public getTitles = (query: any): Promise<ITitle[]> => {
     return new Promise<ITitle[]>(resolve =>
       setTimeout(resolve, 200, this.mockedTitles)
     ).then(titles => {
@@ -36,11 +36,11 @@ class TitleAgent extends BaseAgent implements ITitleAgent {
     });
   };
 
-  getTitle = (id: number): Promise<ITitle> => {
+  public getTitle = (id: number): Promise<ITitle> => {
     return this.get<ITitle>(id);
   };
 
-  postTitle = (obj: ITitle): Promise<ITitle> => {
+  public postTitle = (obj: ITitle): Promise<ITitle> => {
     return this.post<ITitle>(obj);
   };
 }
