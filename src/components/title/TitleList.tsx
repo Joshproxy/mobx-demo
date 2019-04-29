@@ -11,46 +11,30 @@ interface ITitleListProps {
   cartStore?: IObservableCartStore;
 }
 
-@inject(titleStore, cartStore)
-@observer
-class TitleList extends React.Component<ITitleListProps> {
-  public title: string = "Title";
-  public description: string = "Description";
-  private titleStore: IObservableTitleStore;
-  private cartStore: IObservableCartStore;
-  constructor(props: ITitleListProps) {
-    super(props, null);
-    this.titleStore = props.titleStore!;
-    this.cartStore = props.cartStore!;
-    this.titleStore.loadTitles();
-  }
+const TitleListSFC: React.SFC<ITitleListProps> = (props: ITitleListProps) => {
+  const titleRepo = props.titleStore!;
+  const cartRepo = props.cartStore!;
 
-  public render() {
-    const x: any[] = [];
+  titleRepo.loadTitles();
+  const x: any[] = [];
 
-    const addTitle = (title: ITitle) => () => {
-      this.cartStore.addTitle(title);
-    };
+  const addTitle = (title: ITitle) => () => {
+    cartRepo.addTitle(title);
+  };
 
-    this.titleStore.titles.map(t => {
-      x.push(
-        <Title
-          key={t.id}
-          description={t.description}
-          title={t.name}
-          format={t.format}
-          price={t.price}
-          addTitleToCart={addTitle(t)}
-        />
-      );
-    });
+  const titles = titleRepo.titles.map(t => (
+    <Title
+      key={t.id}
+      description={t.description}
+      title={t.name}
+      format={t.format}
+      price={t.price}
+      addTitleToCart={addTitle(t)}
+    />
+  ));
 
-    return (
-      <div>
-        <div>{x}</div>
-      </div>
-    );
-  }
-}
+  return <div>{titles}</div>;
+};
 
+const TitleList = inject(cartStore, titleStore)(observer(TitleListSFC));
 export default TitleList;
