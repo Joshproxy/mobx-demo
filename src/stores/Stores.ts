@@ -1,12 +1,21 @@
+import configurationStore from "./ConfigurationStore";
+import IConfigurationStore from "./IConfigurationStore";
+import IObservableCartStore from "./IObservableCartStore";
+import IObservableTitleStore from "./IObservableTitleStore";
 import observableCartStore from "./ObservableCartStore";
 import observableTitleStore from "./ObservableTitleStore";
-import configurationStore from "./ConfigurationStore";
 
 export const cartStore = "cartStore";
 export const titleStore = "titleStore";
 export const configStore = "configStore";
 
-export const stores = {
+export interface IStores {
+  [cartStore]: IObservableCartStore;
+  [titleStore]: IObservableTitleStore;
+  [configStore]: IConfigurationStore;
+}
+
+export const stores: IStores = {
   [cartStore]: observableCartStore,
   [titleStore]: observableTitleStore,
   [configStore]: configurationStore

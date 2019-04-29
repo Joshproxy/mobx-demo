@@ -1,11 +1,15 @@
-import { observable, computed } from "mobx";
+import { computed, observable } from "mobx";
+import titleAgent from "../agent/TitleAgent";
 import ITitle from "../models/ITitle";
 import IObservableTitleStore from "./IObservableTitleStore";
-import titleAgent from "../agent/TitleAgent";
 
 class ObservableTitleStore implements IObservableTitleStore {
   @observable public titles: ITitle[] = [];
   @observable public loading: boolean = true;
+
+  @computed get count(): number {
+    return this.titles.length;
+  }
 
   public loadTitles = (): Promise<void> => {
     this.loading = true;

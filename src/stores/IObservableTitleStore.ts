@@ -4,6 +4,7 @@ interface IObservableTitleStore {
   loadTitles: () => void;
   titles: ITitle[];
   loading: boolean;
+  count: number;
 }
 
 export default IObservableTitleStore;

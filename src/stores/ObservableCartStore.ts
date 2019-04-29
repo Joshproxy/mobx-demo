@@ -1,11 +1,11 @@
-import { observable, computed } from "mobx";
+import { computed, observable } from "mobx";
 import ITitle from "../models/ITitle";
 import IObservableCartStore from "./IObservableCartStore";
 
 class ObservableCartStore implements IObservableCartStore {
-  name = "cartStore";
-  @observable cartTotal: number = 0;
-  @observable items: ITitle[] = [];
+  public name = "cartStore";
+  @observable public cartTotal: number = 0;
+  @observable public items: ITitle[] = [];
 
   @computed get getCartTotal(): number {
     return this.items.length;
@@ -19,11 +19,11 @@ class ObservableCartStore implements IObservableCartStore {
     return total;
   }
 
-  clearCart() {
+  public clearCart() {
     this.items = [];
   }
 
-  addTitle(title: ITitle): void {
+  public addTitle(title: ITitle): void {
     this.items.push(title);
     console.log(title.name);
   }
