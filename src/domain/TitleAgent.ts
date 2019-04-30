@@ -1,7 +1,7 @@
-import ITitle from "../models/ITitle";
 import configurationStore from "../stores/ConfigurationStore";
 import BaseAgent from "./BaseAgent";
 import ITitleAgent from "./ITitleAgent";
+import ITitle from "./models/ITitle";
 
 class TitleAgent extends BaseAgent implements ITitleAgent {
   private titleCache: ITitle[] = [];

@@ -1,12 +1,11 @@
+import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { observer, inject } from "mobx-react";
 import IObservableCartStore from "../../stores/IObservableCartStore";
 import { cartStore } from "../../stores/Stores";
 
 interface ICartProps {
   cartStore?: IObservableCartStore;
 }
-
 
 @inject(cartStore)
 @observer
@@ -16,11 +15,11 @@ class Cart extends Component<ICartProps> {
     super(props);
     this.cartStore = this.props.cartStore!;
   }
-  render() {
-    let cartCount = this.cartStore.getCartTotal;
-    let currentPrice = this.cartStore.getTotalPrice;
+  public render() {
+    const cartCount = this.cartStore.getCartTotal;
+    const currentPrice = this.cartStore.getTotalPrice;
 
-    let clearCart = () => {
+    const clearCart = () => {
       this.cartStore.clearCart();
     };
 
