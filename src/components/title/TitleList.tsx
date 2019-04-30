@@ -11,34 +11,34 @@ interface ITitleListProps {
   cartStore?: IObservableCartStore;
 }
 
-const TitleListSFC: React.SFC<ITitleListProps> = (props: ITitleListProps) => {
-  const titleRepo = props.titleStore!;
-  const cartRepo = props.cartStore!;
+const TitleList = inject(cartStore, titleStore)(
+  observer((props: ITitleListProps) => {
+    const titleRepo = props.titleStore!;
+    const cartRepo = props.cartStore!;
 
-  titleRepo.loadTitles();
-  const x: any[] = [];
+    titleRepo.loadTitles();
+    const x: any[] = [];
 
-  const addTitle = (title: ITitle) => () => {
-    cartRepo.addTitle(title);
-  };
+    const addTitle = (title: ITitle) => () => {
+      cartRepo.addTitle(title);
+    };
 
-  return (
-    <div>
-      {titleRepo.titles.map(t => (
-        <Title
-          key={t.id}
-          description={t.description}
-          title={t.name}
-          format={t.format}
-          price={t.price}
-          addTitleToCart={addTitle(t)}
-        />
-      ))}
-    </div>
-  );
-};
-
-const TitleList = inject(cartStore, titleStore)(observer(TitleListSFC));
+    return (
+      <div>
+        {titleRepo.titles.map(t => (
+          <Title
+            key={t.id}
+            description={t.description}
+            title={t.name}
+            format={t.format}
+            price={t.price}
+            addTitleToCart={addTitle(t)}
+          />
+        ))}
+      </div>
+    );
+  })
+);
 export default TitleList;
 
 @inject(titleStore, cartStore)
@@ -56,6 +56,7 @@ class TitleListComponent extends React.Component<ITitleListProps> {
   public addTitle = (title: ITitle) => () => {
     this.cartRepo.addTitle(title);
   };
+
   public render() {
     return (
       <div>
