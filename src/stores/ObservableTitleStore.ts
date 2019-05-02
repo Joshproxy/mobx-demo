@@ -1,6 +1,6 @@
 import { computed, observable } from "mobx";
-import titleAgent from "../agent/TitleAgent";
-import ITitle from "../models/ITitle";
+import ITitle from "../domain/models/ITitle";
+import titleAgent from "../domain/TitleAgent";
 import IObservableTitleStore from "./IObservableTitleStore";
 
 class ObservableTitleStore implements IObservableTitleStore {
@@ -19,6 +19,13 @@ class ObservableTitleStore implements IObservableTitleStore {
         this.titles = titles;
         this.loading = false;
       });
+  };
+
+  public editTitle = (title: ITitle): ITitle => {
+    this.titles.splice(this.titles.findIndex(t => t.id === title.id), 1, {
+      ...title
+    });
+    return title;
   };
 }
 const observableTitleStore = new ObservableTitleStore();

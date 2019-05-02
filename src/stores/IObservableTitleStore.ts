@@ -1,4 +1,4 @@
-import ITitle from "../api/models/ITitle";
+import ITitle from "../domain/models/ITitle";
 
 interface IObservableTitleStore {
   loadTitles: () => void;

@@ -1,4 +1,4 @@
-import ITitle from "../models/ITitle";
+import ITitle from "../domain/models/ITitle";
 
 interface IObservableCartStore {
   items: ITitle[];

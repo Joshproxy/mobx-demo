@@ -1,12 +1,8 @@
 {
   "compilerOptions": {
-      "experimentalDecorators": true,
+    "experimentalDecorators": true,
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "sourceMap": true,
     "allowJs": true,
     "skipLibCheck": true,
@@ -25,15 +21,11 @@
     "noImplicitThis": true,
     "strictNullChecks": true,
     "emitDecoratorMetadata": true,
-    "typeRoots": [
-      "../node_modules/@types",
-      "../@types"
-    ],
-    "rootDir": "src"    
+    "downlevelIteration": true,
+    "typeRoots": ["../node_modules/@types", "../@types"],
+    "rootDir": "src"
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "exclude": [
     "node_modules",
     "build",

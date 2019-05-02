@@ -1,4 +1,4 @@
-import ITitle from "../models/ITitle";
+import ITitle from "./models/ITitle";
 
 export default interface ITitleAgent {
   getTitles: (search: any) => Promise<ITitle[]>;

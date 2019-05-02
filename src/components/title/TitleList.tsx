@@ -1,10 +1,10 @@
 import { inject, observer } from "mobx-react";
 import React from "react";
-import EditableTitle from "../../domain/models/EditableTitle";
 import ITitle from "../../domain/models/ITitle";
 import IObservableCartStore from "../../stores/IObservableCartStore";
 import IObservableTitleStore from "../../stores/IObservableTitleStore";
 import { cartStore, titleStore } from "../../stores/Stores";
+import EditableTitle from "./EditableTitle";
 import { Title } from "./Title";
 
 interface ITitleListProps {
@@ -17,7 +17,6 @@ interface ITitleListProps {
 export default class TitleList extends React.Component<ITitleListProps> {
   private titleRepo: IObservableTitleStore;
   private cartRepo: IObservableCartStore;
-  private editableTitle: EditableTitle = new EditableTitle();
   constructor(props: ITitleListProps) {
     super(props, null);
     this.titleRepo = props.titleStore!;
@@ -29,15 +28,15 @@ export default class TitleList extends React.Component<ITitleListProps> {
     this.cartRepo.addTitle(title);
   };
 
-  public editTitle = (title: ITitle) => () => {
+  public edit = (title: ITitle) => {
     this.titleRepo.editTitle(title);
   };
 
   public render() {
     return (
       <div>
-        <div>
-          {this.titleRepo.titles.map(t => (
+        {this.titleRepo.titles.map(t => (
+          <div key={t.id}>
             <Title
               key={t.id}
               description={t.description}
@@ -46,8 +45,9 @@ export default class TitleList extends React.Component<ITitleListProps> {
               price={t.price}
               addTitleToCart={this.addTitle(t)}
             />
-          ))}
-        </div>
+            <EditableTitle key={t.id} title={t} editTitle={this.edit} />
+          </div>
+        ))}
       </div>
     );
   }
