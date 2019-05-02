@@ -1,10 +1,5 @@
 import { Input } from "forge-react-ds";
-import {
-  ComposibleValidatable,
-  FieldState,
-  FormState,
-  ValidatorResponse
-} from "formstate";
+import { FieldState, FormState, ValidatorResponse } from "formstate";
 import { keys } from "mobx";
 import { observer } from "mobx-react";
 import React, { Validator } from "react";
