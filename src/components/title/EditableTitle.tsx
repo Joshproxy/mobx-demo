@@ -10,6 +10,8 @@ interface ITitleProps {
   editTitle: (title: ITitle) => void;
 }
 
+// https://formstate.github.io/#/
+
 const required: <T>(value: T) => ValidatorResponse = <T extends any>(val: T) =>
   !val && "required";
 
@@ -89,7 +91,9 @@ export default class EditableTitle extends React.Component<ITitleProps> {
   }
 
   public editTitleClick = () => {
-    this.props.editTitle(this.titleForm.toValue());
+    if (!this.titleForm.hasError) {
+      this.props.editTitle(this.titleForm.toValue());
+    }
   };
 
   public render() {
