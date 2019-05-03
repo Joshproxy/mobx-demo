@@ -1,94 +1,30 @@
 import { Input } from "forge-react-ds";
-import {
-  ComposibleValidatable,
-  FieldState,
-  FormState,
-  ValidatorResponse
-} from "formstate";
 import { keys } from "mobx";
 import { observer } from "mobx-react";
 import React, { Validator } from "react";
 import ITitle from "../../domain/models/ITitle";
+import * as Validation from "../../shared/validation";
 
 interface ITitleProps {
   title: ITitle;
   editTitle: (title: ITitle) => void;
 }
 
-// https://formstate.github.io/#/
-
-const required: <T>(value: T) => ValidatorResponse = <T extends any>(val: T) =>
-  !val && "required";
-
-const email: (value: string) => ValidatorResponse = (val: string) =>
-  val.indexOf("@") === -1 && "not an email";
-
-// tslint:disable-next-line: max-classes-per-file
-/** Wraps the FieldState class to map from input element value to field value. */
-class FieldStateWrapper<T> extends FieldState<T> {
-  constructor(initialValue: T) {
-    super(initialValue);
-  }
-
-  /** Maps the target input element value to the field value with optional map function. */
-  public onInputChange = <I extends HTMLInputElement = HTMLInputElement>(
-    map: (value: string) => any = s => s
-  ) => (ev: React.ChangeEvent<I>) => {
-    this.onChange(map(ev.target.value));
-  };
-}
-
-/** This FormState wrapper exposes a couple extra methods for easy-of-use. */
-// tslint:disable-next-line: max-classes-per-file
-class FormStateWrapper<T> extends FormState<{
-  [key: string]: FieldStateWrapper<any>;
-}> {
-  /** Retrieves the value from the element and maps it into a field. */
-  public static onFieldChange = (
-    fieldState: FieldStateWrapper<any>,
-    map: (value: string) => any = s => s
-  ) => (ev: React.ChangeEvent<HTMLInputElement>) => {
-    fieldState.onChange(map(ev.target.value));
-  };
-  private initialValue: T;
-
-  constructor(init: T, fields: { [key: string]: FieldStateWrapper<any> }) {
-    super(fields);
-    this.initialValue = init;
-  }
-  /** Retrieves the entire object with any edited field values. */
-  public toValue(t?: T): T {
-    const tFields = Object.keys(this.$).map(k => {
-      return { [k]: this.$[k].value };
-    });
-    let mergedFields = {};
-    tFields.forEach(f => {
-      mergedFields = { ...mergedFields, ...f };
-    });
-    return {
-      ...this.initialValue,
-      ...t,
-      ...mergedFields
-    };
-  }
-}
-
-// tslint:disable-next-line: max-classes-per-file
 @observer
 export default class EditableTitle extends React.Component<ITitleProps> {
-  private titleForm: FormStateWrapper<ITitle>;
+  private titleForm: Validation.FormStateWrapper<ITitle>;
 
   constructor(props: ITitleProps) {
     super(props);
 
-    this.titleForm = new FormStateWrapper<ITitle>(this.props.title, {
-      name: new FieldStateWrapper(this.props.title.name).validators(
-        required,
-        email
+    this.titleForm = new Validation.FormStateWrapper<ITitle>(this.props.title, {
+      name: new Validation.FieldStateWrapper(this.props.title.name).validators(
+        Validation.required,
+        Validation.email
       ),
-      price: new FieldStateWrapper<number>(this.props.title.price).validators(
-        required
-      )
+      price: new Validation.FieldStateWrapper<number>(
+        this.props.title.price
+      ).validators(Validation.required)
     });
   }
 
