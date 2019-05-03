@@ -1,5 +1,10 @@
 import { Input } from "forge-react-ds";
-import { FieldState, FormState, ValidatorResponse } from "formstate";
+import {
+  ComposibleValidatable,
+  FieldState,
+  FormState,
+  ValidatorResponse
+} from "formstate";
 import { keys } from "mobx";
 import { observer } from "mobx-react";
 import React, { Validator } from "react";
@@ -20,7 +25,9 @@ const email: (value: string) => ValidatorResponse = (val: string) =>
 
 // tslint:disable-next-line: max-classes-per-file
 /** This FormState wrapper exposes a couple extra methods for easy-of-use. */
-class FormStateWrapper<T> extends FormState<any> {
+class FormStateWrapper<T> extends FormState<{
+  [key: string]: FieldState<any>;
+}> {
   /** Retrieves the value from the element and maps it into a field. */
   public static onFieldChange = (
     fieldState: FieldState<any>,
@@ -30,7 +37,7 @@ class FormStateWrapper<T> extends FormState<any> {
   };
   private initialValue: T;
 
-  constructor(init: T, fields: any) {
+  constructor(init: T, fields: { [key: string]: FieldState<any> }) {
     super(fields);
     this.initialValue = init;
   }
