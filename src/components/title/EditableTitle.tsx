@@ -1,9 +1,10 @@
 import { Input } from "forge-react-ds";
-import { keys } from "mobx";
 import { observer } from "mobx-react";
 import React, { Validator } from "react";
 import ITitle from "../../domain/models/ITitle";
-import * as Validation from "../../shared/validation";
+import { FieldState } from "../../shared/FieldState";
+import { FormState } from "../../shared/FormState";
+import * as Validation from "../../shared/Validation";
 
 interface ITitleProps {
   title: ITitle;
@@ -12,19 +13,19 @@ interface ITitleProps {
 
 @observer
 export default class EditableTitle extends React.Component<ITitleProps> {
-  private titleForm: Validation.FormStateWrapper<ITitle>;
+  private titleForm: FormState<ITitle>;
 
   constructor(props: ITitleProps) {
     super(props);
 
-    this.titleForm = new Validation.FormStateWrapper<ITitle>(this.props.title, {
-      name: new Validation.FieldStateWrapper(this.props.title.name).validators(
-        Validation.required,
-        Validation.email
+    this.titleForm = new FormState<ITitle>(this.props.title, {
+      name: new FieldState(this.props.title.name).validators(
+        Validation.Required("Title is required"),
+        Validation.Email("Title must be an email")
       ),
-      price: new Validation.FieldStateWrapper<number>(
-        this.props.title.price
-      ).validators(Validation.required)
+      price: new FieldState<number>(this.props.title.price).validators(
+        Validation.Required("Price is required")
+      )
     });
   }
 
@@ -60,7 +61,11 @@ export default class EditableTitle extends React.Component<ITitleProps> {
           <button onClick={this.editTitleClick} className="addButton">
             Edit
           </button>
-          <p className="validationError">The form has an error: {form.error}</p>
+          {form.hasError && (
+            <p className="validationError">
+              The form has an error: {form.error}
+            </p>
+          )}
         </div>
       </aside>
     );
